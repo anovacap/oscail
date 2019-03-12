@@ -3,26 +3,36 @@
 #define STEPPER_PIN_3 11
 #define STEPPER_PIN_4 12
 int step_number = 0;
+int rec = 0;
+
 void setup() {
 pinMode(STEPPER_PIN_1, OUTPUT);
 pinMode(STEPPER_PIN_2, OUTPUT);
 pinMode(STEPPER_PIN_3, OUTPUT);
 pinMode(STEPPER_PIN_4, OUTPUT);
-
+Serial.begin(9600); // Default communication rate of bluetooth connector
 }
 
 void loop() {
- for(int a = 0; a < 600; a++){
-  OneStep(false);
-  delay(2);
+ if(Serial.available() > 0) { // checks if connection to bluetooth
+  rec = Serial.read(); // reads data from bluetooth
   }
+
+ if(rec == 'a') {
   for(int a = 0; a < 600; a++){
-  OneStep(true);
-  delay(20);
-  
+     OneStep(false);
+     delay(2);
   }
-  
+  delay(3000);
+  for(int a = 0; a < 600; a++){
+     OneStep(true);
+     delay(10);
   }
+  rec = 0;
+ }
+}
+
+
 void OneStep(bool dir){
     if(dir){
 switch(step_number){
@@ -50,7 +60,7 @@ switch(step_number){
   digitalWrite(STEPPER_PIN_3, LOW);
   digitalWrite(STEPPER_PIN_4, HIGH);
   break;
-} 
+}
   }else{
     switch(step_number){
   case 0:
@@ -76,23 +86,12 @@ switch(step_number){
   digitalWrite(STEPPER_PIN_2, LOW);
   digitalWrite(STEPPER_PIN_3, LOW);
   digitalWrite(STEPPER_PIN_4, LOW);
- 
-  
-} 
+
+
+}
   }
 step_number++;
   if(step_number > 3){
     step_number = 0;
   }
 }
-
-
-//void setup() {
-  // put your setup code here, to run once:
-
-//}
-
-//void loop() {
-  // put your main code here, to run repeatedly:
-
-//}

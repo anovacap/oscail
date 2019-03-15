@@ -1,22 +1,37 @@
+#include <SoftwareSerial.h>
+SoftwareSerial BTserial(2, 3); //RX | TX
 #define STEPPER_PIN_1 9
 #define STEPPER_PIN_2 10
 #define STEPPER_PIN_3 11
 #define STEPPER_PIN_4 12
 int step_number = 0;
 int rec = 0;
+const byte BTpin = 7;
+int LED = 6;
+boolean BTconnected = false;
 
 void setup() {
 pinMode(STEPPER_PIN_1, OUTPUT);
 pinMode(STEPPER_PIN_2, OUTPUT);
 pinMode(STEPPER_PIN_3, OUTPUT);
 pinMode(STEPPER_PIN_4, OUTPUT);
-Serial.begin(9600); // Default communication rate of bluetooth connector
+pinMode(BTpin, INPUT);
+pinMode(LED, OUTPUT);
+BTserial.begin(9600); // Default communication rate of bluetooth connector
 }
 
 void loop() {
- if(Serial.available() > 0) { // checks if connection to bluetooth
-  rec = Serial.read(); // reads data from bluetooth
+ if(BTserial.available() > 0) { // checks if connection to bluetooth
+  rec = BTserial.read(); // reads data from bluetooth
   }
+
+ if ( digitalRead(BTpin)==HIGH){
+   digitalWrite(LED, HIGH);
+ }
+ else {
+   digitalWrite(LED, LOW);
+ }
+ 
 
  if(rec == 'a') {
   for(int a = 0; a < 600; a++){

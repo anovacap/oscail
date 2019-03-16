@@ -2,13 +2,17 @@
 ---
 ## Description
 ---
-* Oscailt is Irish for Open - Pronounced Uskill
-* Final Project for Holberton School
+* Oscailt is Irish for Open - Pronounced Uskill.
+* Final Project for Holberton School.
 * Create an Android mobile application that allows the user to connect to a door and open it by  pushing a button on the app.
 <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122742.jpg"  width="250" height="250">
-<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122857.jpg"  width="250" height="250">
+<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122857.jpg"  width="250" height="250" align="right">
 <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122804.jpg"  width="250" height="250">
-<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122823.jpg"  width="250" height="250">
+<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122823.jpg"  width="250" height="250" align="right">
+* Create a kit that updates doors to open with the app.
+* Ability doors (Handicaped doors) are the intended doors to be upgraded with the kit.
+* A wifi component will 
+--- 
 ## Requirements
 * 1. App inventor account - Goto http://appinventor.mit.edu/explore/ to create.
 * 2. Android Device with Bluetooth 4.

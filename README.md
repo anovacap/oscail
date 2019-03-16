@@ -10,13 +10,11 @@
 <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122804.jpg"  width="250" height="250">
 <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122823.jpg"  width="250" height="250">
 ## Requirements
----
 * 1. App inventor account - Goto http://appinventor.mit.edu/explore/ to create.
 * 2. Android Device with Bluetooth 4.
 * 3. Barcode/QR Scanner - Goto Google Play Store.
 * 4. MIT AI2 Companion - Got Google Play Store.
 ## Instructions
----
 * 1. Go to  http://appinventor.mit.edu/explore/ - You will need a QR reader from Google Play Store.
 * 2. Select "Create apps!" in upper left corner. Sign up or login.
 * 3. Goto "Projects" menu. Select "Import project (.aia) from my computer ..."
@@ -25,6 +23,7 @@
 * 6. On phone - Open MIT AI2 Companion app - Touch "scan QR code" - point phone to QR on browser.
 * 7. 2 "Allow Install" screens appear on phone - open app 
 ## Files
+
 File | Task
 ---|---
 

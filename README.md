@@ -8,7 +8,7 @@
 <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122742.jpg"  width="250" height="250">
 <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122857.jpg"  width="250" height="250">
 <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122804.jpg"  width="250" height="250">
-<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122823.jpg"  width="250" height="250" align="right">
+<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122823.jpg"  width="250" height="250">
 ---
 ## Requirements
 ---

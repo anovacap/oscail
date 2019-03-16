@@ -2,7 +2,7 @@
 ---
 ## Description
 ---
-* Oscailt is Irish for Open - Pronounced Uskill.
+* Oscail - Pronounced Uskill - Irish for Open.
 * Final Project for Holberton School.
 * Create an Android mobile application that allows the user to connect to a door and open it by  pushing a button on the app.
 ---

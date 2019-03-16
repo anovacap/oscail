@@ -5,7 +5,7 @@
 * Oscailt is Irish for Open - Pronounced Uskill
 * Final Project for Holberton School
 * Create an Android mobile application that allows the user to connect to a door and open it by  pushing a button on the app.
-![](https://github.com/anovacap/oscail/blob/master/IMG_20190316_122742.jpg?v=4&s=200)
+![](https://github.com/anovacap/oscail/blob/master/IMG_20190316_122742.jpg?v=4&s=100)
 ---
 ## Requirements
 ---

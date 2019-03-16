@@ -1,20 +1,24 @@
 #include <SoftwareSerial.h>
 SoftwareSerial BTserial(2, 3); //RX | TX
-SoftwareSerial BT6serial(4, 5);
+
 #define STEPPER_PIN_1 9
 #define STEPPER_PIN_2 10
 #define STEPPER_PIN_3 11
 #define STEPPER_PIN_4 12
+
+String fromPC = "";
 int step_number = 0;
 int rec = 0;
 const byte BTpin = 7;
 int LED = 6;
 int a = 0;
 int i = 0;
+int b = 0;
 boolean BTconnected = false;
 boolean BT6connected = false;
 
 void setup() {
+//Serial.begin(9600);
 pinMode(STEPPER_PIN_1, OUTPUT);
 pinMode(STEPPER_PIN_2, OUTPUT);
 pinMode(STEPPER_PIN_3, OUTPUT);
@@ -22,24 +26,25 @@ pinMode(STEPPER_PIN_4, OUTPUT);
 pinMode(BTpin, INPUT);
 pinMode(LED, OUTPUT);
 BTserial.begin(9600); // Default communication rate of bluetooth connector
-BT6serial.begin(9600);
+Serial.begin(115200); // Harware serial for USB
+Serial.println("Hello");
+//BT6serial.begin(9600);
 }
+
 
 void loop() {
   // look for command in rest mode logic
- if(!BTserial.isListening()) {
-  BTserial.listen();
- }
+ rec = 0;
  if(BTserial.available() > 0) { // checks if connection to bluetooth
   rec = BTserial.read(); // reads data from bluetooth
+  Serial.print((char)BTserial.read()); //send it to the PC
   }
- if(rec != 'a') {
-  if(!BT6serial.isListening()) {
-    BT6serial.listen();
-  }
-  if(BT6serial.available() > 0) { // checks if connection to bluetooth
-   rec = BT6serial.read(); // reads data from bluetooth
-   }
+
+ if (Serial.available()) {
+  delay(10);
+  fromPC = (char)Serial.read();
+  BTserial.print(fromPC);
+  Serial.print(fromPC);
  }
 
  if ( digitalRead(BTpin)==HIGH){ // Tests weather hc5 is connected
@@ -48,23 +53,19 @@ void loop() {
  else {
    digitalWrite(LED, LOW);
  }
- 
 
  if(rec == 'a') {
-  a = 0;
-:begin_open
+  b = 0;
+begin_open:
   rec = 0;
-  for(i = a; i < 600; i++){ //OPEN loop
+  for(i = b; i < 600; i++){ //OPEN loop
      OneStep(false);
      delay(2);
   }
-:dela // the delay in door loop befor close after open
+dela: // the delay in door loop befor close after open
   rec = 0;
   delay(3000);
   // Dela postion listen logic
-  if(!BTserial.isListening()) {
-   BTserial.listen();
-  }
   if(BTserial.available() > 0) { // checks if connection to bluetooth
    rec = BTserial.read(); // reads data from bluetooth
   }
@@ -72,41 +73,21 @@ void loop() {
     goto dela;
   }
   
-  if(!BT6serial.isListening()) {
-   BT6serial.listen();
-  }
-  if(BT6serial.available() > 0) { // checks if connection to bluetooth
-   rec = BT6serial.read(); // reads data from bluetooth
-  }
-  if(rec == 'a') {
-    goto dela;
-  }
-  
   rec = 0;
   
-  for(a = 0; a < 600; a++){ //CLOSE loop
-     // Closing postion listen lo
-   if(!BTserial.isListening()) {
-    BTserial.listen();
-   }
+  for(a = 600; a > 0; a--){ //CLOSE loop
+     // Closing postion listen lop
+
+   OneStep(true);
+   delay(10);
    if(BTserial.available() > 0) { // checks if connection to bluetooth
     rec = BTserial.read(); // reads data from bluetooth
    }
    if(rec == 'a') {
+    b = a;
     goto begin_open;
    }
-  
-   if(!BT6serial.isListening()) {
-    BT6serial.listen();
-   }
-   if(BT6serial.available() > 0) { // checks if connection to bluetooth
-    rec = BT6serial.read(); // reads data from bluetooth
-   }
-   if(rec == 'a') {
-    goto begin_open;
-   }
-   OneStep(true);
-   delay(10);
+   
   }
   rec = 0;
  }

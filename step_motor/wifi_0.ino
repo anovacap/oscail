@@ -3,13 +3,13 @@
 const char* ssid     = "drumphsnutz";         // The SSID (name) of the Wi-Fi network you want to connect to
 const char* password = "tinyearth720";     // The password of the Wi-Fi network
 const byte BT2pin = D1;
-const byte BT2test = D4;
+const byte BT2test = D2;
 const byte BTpin = D0;
-const byte BTtest =D5;
-int LED = D2;
-int LED2 = D3;
-int ErrorLED = D6;
+const byte BTtest =D3;
+const byte openStatus = D4;
+int ErrorLED = D5;
 int count = 0;
+int flag_0 = 0;
 
 
 void setup() {
@@ -38,53 +38,73 @@ void setup() {
   pinMode(LED, OUTPUT);
   pinMode(BT2pin, INPUT);
   pinMode(LED2, OUTPUT);
+  pinMode(openSatus, INPUT);
   pinMode(ErrorLED, OUTPUT);
 }
 
 void loop() {
- if (count == 0) {
-  digitalWrite(LED, LOW);
-  digitalWrite(LED2, LOW);
- }
- if ( digitalRead(BTpin)==HIGH){ // Tests weather hc5 is connected
-   digitalWrite(LED, HIGH);
-   if (digitalRead(BTtest) == LOW) {
-    digitalWrite(ErrorLED, HIGH);
-   }
-   else {
-    digitalWrite(ErrorLED, LOW);
-   }
- }
- else {
-   digitalWrite(LED, LOW);
-   if (digitalRead(BTtest) == HIGH) {
-    digitalWrite(ErrorLED, HIGH);
-   }
-   else {
-    digitalWrite(ErrorLED, LOW);
-   }
- }
-
-
- if ( digitalRead(BT2pin)==HIGH){ // Tests weather hc5 is connected
-   digitalWrite(LED2, HIGH);
-   if (digitalRead(BT2test) == LOW) {
-    digitalWrite(ErrorLED, HIGH);
-   }
-   else {
-    digitalWrite(ErrorLED, LOW);
-    
-   }
- }
- else {
-   digitalWrite(LED2, LOW);
-   if (digitalRead(BTtest == HIGH)) {
-      digitalWrite(ErrorLED, HIGH);
+begin_check:
+ delay(1000);
+ if (digitalRead(openStatus) == LOW) {  // Checks weather it is open or not
+  if ( digitalRead(BTpin)==HIGH){ // Tests weather hc5 is connected
+    if (digitalRead(BTtest) == LOW) {
+     if (flag_0 == 0) {
+      flag_0 = 1;
+      goto begin_check;
+     }
+     digitalWrite(ErrorLED, HIGH);
+     flag_0 = 0;
     }
     else {
-      digitalWrite(ErrorLED, LOW);
+     digitalWrite(ErrorLED, LOW);
+     flag_0 == 0;
     }
+  }
+  else {
+    if (digitalRead(BTtest) == HIGH) {
+     if (flag_0 == 0) {
+      flag_0 = 1;
+      goto begin_check;
+     }
+     digitalWrite(ErrorLED, HIGH);
+     flag_0 = 0;
+    }
+    else {
+     digitalWrite(ErrorLED, LOW);
+     flag_0 = 0;
+    }
+  }
+
+
+  if ( digitalRead(BT2pin) == HIGH){ // Tests weather hc5 is connected
+   if (digitalRead(BT2test) == LOW) {
+    if (flag_0 == 0) {
+      flag_0 = 1;
+      goto begin_check;
+    }
+    digitalWrite(ErrorLED, HIGH);
+    flag_0 = 0;
+   }
+   else {
+    digitalWrite(ErrorLED, LOW);
+    flag_0 = 0;
+   }
+  }
+  else {
+   digitalWrite(LED2, LOW);
+   if (digitalRead(BT2test == HIGH)) {
+      if (flag_0 == 0) {
+        flag_0 = 1;
+        goto begin_check;
+      }
+      digitalWrite(ErrorLED, HIGH);
+      flag_0 = 0;
+   }
+   else {
+     digitalWrite(ErrorLED, LOW);
+     flag0 = 0;
+   }
+  }
  }
- count++;
   
 }

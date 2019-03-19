@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# install node dependencies
-# may need a sudo install try without sudo first
-# Install latest version of Xcode                                                                                        
-# Install latest Node JS version - https://nodejs.org/en/download    
-npm install npm -g
-npm install -g yarn
-npm install -g yarn
-npm install -g expo-cli

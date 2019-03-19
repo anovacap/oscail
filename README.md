@@ -12,7 +12,7 @@
 * A wifi component will allow access to door status on line
 --- 
 ## Requirements
-* 1. App inventor account - Goto http://appinventor.mit.edu/explore/ to create.
+1. App inventor account - Goto http://appinventor.mit.edu/explore/ to create.
 * 2. Android Device with Bluetooth 4.
 * 3. Barcode/QR Scanner - Goto Google Play Store.
 * 4. MIT AI2 Companion - Got Google Play Store.

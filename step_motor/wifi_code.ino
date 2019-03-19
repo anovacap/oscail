@@ -52,7 +52,7 @@ void loop() {
   // Hello Message
   if (count == 0) {
    Serial.println("publishing a message");
-   auto client = PubNub.publish(channel, "\"\\\"Hello world!\\\" from Arduino.\"");
+   auto client = PubNub.publish(channel, "\"\\\"Welcome to Oscail!\\\" from Arduino.\"");
    if (!client) {
      Serial.println("publishing error");
      delay(1000);
@@ -115,6 +115,36 @@ void loop() {
    pclient->stop();
    Serial.println();
    error_flag = 0;
+ }
+ else {
+  Serial.println("publishing a message");
+   auto client = PubNub.publish(channel, "\"\\\"I am operational!\\\" from Arduino.\"");
+   if (!client) {
+     Serial.println("publishing error");
+     delay(1000);
+     return;
+   }
+   while (client->connected()) {
+     while (client->connected() && !client->available());
+     char c = client->read();
+     Serial.println(c);
+   }
+   client->stop();
+   Serial.println();
+
+   Serial.println("waiting for a messeage (subscribe)");
+   PubSubClient *pclient = PubNub.subscribe(channel);
+   if (!pclient) {
+     Serial.println("subscription error");
+     delay(1000);
+     return;
+   }
+   while (pclient->wait_for_data()) {
+     char c = pclient->read();
+     Serial.print(c);
+   }
+   pclient->stop();
+   Serial.println();
  }
 
 

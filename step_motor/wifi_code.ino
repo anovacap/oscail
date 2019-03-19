@@ -21,7 +21,8 @@ const byte openStatus = D4;
 int errorLED = D1;
 
 int error_flag = 0;
-int count = 0;
+int hello_flag = 0;
+int msg_flag = 0;
 
 void setup() {
   Serial.begin(115200);         // Start the Serial communication to send messages to the computer
@@ -50,9 +51,9 @@ void setup() {
 void loop() {
 
   // Hello Message
-  if (count == 0) {
+  if (hello_flag == 0) {
    Serial.println("publishing a message");
-   auto client = PubNub.publish(channel, "\"\\\"Welcome to Oscail!\\\" from Arduino.\"");
+   auto client = PubNub.publish(channel, "\{\"text\":\"Welcome to Oscail!\"\}");
    if (!client) {
      Serial.println("publishing error");
      delay(1000);
@@ -80,73 +81,78 @@ void loop() {
    pclient->stop();
    Serial.println();
  }
- count++;
+ hello_flag = 1;
 
- delay(30000);
+ delay(3000);
 
 // Sends Error to PubNub here!!!!!!!
  if (error_flag == 1) {
-  Serial.println("publishing a message");
-   auto client = PubNub.publish(channel, "\"\\\"Critical Error!\\\" from Arduino.\"");
-   if (!client) {
-     Serial.println("publishing error");
-     delay(1000);
-     return;
-   }
-   while (client->connected()) {
-     while (client->connected() && !client->available());
-     char c = client->read();
-     Serial.println(c);
-   }
-   client->stop();
-   Serial.println();
+  if (msg_flag == 0) {
+   Serial.println("publishing a message");
+    auto client = PubNub.publish(channel, "\{\"text\":\"Critical Error!\"\}");
+    if (!client) {
+      Serial.println("publishing error");
+      delay(1000);
+      return;
+    }
+    while (client->connected()) {
+      while (client->connected() && !client->available());
+      char c = client->read();
+      Serial.println(c);
+    }
+    client->stop();
+    Serial.println();
 
-   Serial.println("waiting for a messeage (subscribe)");
-   PubSubClient *pclient = PubNub.subscribe(channel);
-   if (!pclient) {
-     Serial.println("subscription error");
-     delay(1000);
-     return;
-   }
-   while (pclient->wait_for_data()) {
-     char c = pclient->read();
-     Serial.print(c);
-   }
-   pclient->stop();
-   Serial.println();
-   error_flag = 0;
+    Serial.println("waiting for a messeage (subscribe)");
+    PubSubClient *pclient = PubNub.subscribe(channel);
+    if (!pclient) {
+      Serial.println("subscription error");
+      delay(1000);
+      return;
+    }
+    while (pclient->wait_for_data()) {
+      char c = pclient->read();
+      Serial.print(c);
+    }
+    pclient->stop();
+    Serial.println();
+    error_flag = 0;
+    msg_flag = 1;
+  }
  }
  else {
-  Serial.println("publishing a message");
-   auto client = PubNub.publish(channel, "\"\\\"I am operational!\\\" from Arduino.\"");
-   if (!client) {
-     Serial.println("publishing error");
-     delay(1000);
-     return;
-   }
-   while (client->connected()) {
-     while (client->connected() && !client->available());
-     char c = client->read();
-     Serial.println(c);
-   }
-   client->stop();
-   Serial.println();
+  if (msg_flag == 1) {
+   Serial.println("publishing a message");
+    auto client = PubNub.publish(channel, "\{\"text\":\"Opperational!\"\}");
+     if (!client) {
+      Serial.println("publishing error");
+      delay(1000);
+      return;
+    }
+    while (client->connected()) {
+      while (client->connected() && !client->available());
+      char c = client->read();
+      Serial.println(c);
+    }
+    client->stop();
+    Serial.println(); 
 
-   Serial.println("waiting for a messeage (subscribe)");
-   PubSubClient *pclient = PubNub.subscribe(channel);
-   if (!pclient) {
+    Serial.println("waiting for a messeage (subscribe)");
+    PubSubClient *pclient = PubNub.subscribe(channel);
+    if (!pclient) {
      Serial.println("subscription error");
      delay(1000);
      return;
-   }
-   while (pclient->wait_for_data()) {
+    }
+    while (pclient->wait_for_data()) {
      char c = pclient->read();
      Serial.print(c);
-   }
-   pclient->stop();
-   Serial.println();
+    }
+    pclient->stop();
+    Serial.println();
+    msg_flag = 0;
+  }
  }
-
 
 // Looking for error
  if (digitalRead(openStatus) == HIGH) {  // Checks weather it is open or not

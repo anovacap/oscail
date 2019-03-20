@@ -28,8 +28,8 @@
 5.  Breadboard.
 6.  Resistors = 1 330ohm, 1 1kohm, 1 2.2kohm.
 7.  1 led.
-8.  Male to male jumper cables
-9.  Wood, nail, screws, paint
+8.  Male to male jumper cables.
+9.  Wood, nail, screws, paint.
 10. Arduino Create https://www.arduino.cc/en/main/software
 11. PubNub Arduino SDK https://www.pubnub.com/docs/arduino/pubnub-arduino-sdk
 12. PubNub Rest Api https://www.pubnub.com/docs/pubnub-rest-api-documentation
@@ -43,16 +43,17 @@
 7.  "Allow Install" as screens appear on phone - open app.
 ## Software
 <img src="https://github.com/anovacap/oscail/blob/master/Arduino.png" width="75" height="75"> | <img src="https://github.com/anovacap/oscail/blob/master/Mit_App.png" width="75" height="75"> | <img src="https://github.com/anovacap/oscail/blob/master/pubnub-share.png" width="75" height="75">
-1.  Arduino 1.8.9
-2.  Mit App Inventor - Built March 9 2019 Version nb175b
-3.  PubNub Arduino SDK
-4.  PubNub Rest Api
+1.  Arduino 1.8.9.
+2.  Mit App Inventor - Built March 9 2019 Version nb175b.
+3.  PubNub Arduino SDK.
+4.  PubNub Rest Api.
 ## Future Goals
 1. Create an Expo deployed React Native App for Andriod and IOS.
 2. Improve the connection experience.
 3. Include location map in App.
 4. Add more BluetoothLE antennas.
-5. Publish hardware updates through PubNub Api
+5. Publish hardware updates through PubNub Api.
+6. Attenuate the BluetoothLE range to 8-10 feet.
 ## Directories
 ---
 Directory Name | Files & Description

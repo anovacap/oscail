@@ -3,8 +3,8 @@
 #include <PubNub.h>
 #include <SPI.h>
 
-const static char ssid[]     = "drumphsnutz";         // The SSID (name) of the Wi-Fi network you want to connect to
-const static char pass[] = "tinyearth720";     // The password of the Wi-Fi network
+const static char ssid[]     = "XXXX";         // The SSID (name) of the Wi-Fi network you want to connect to
+const static char pass[] = "XXXXX";     // The password of the Wi-Fi network
 int status = WL_IDLE_STATUS;
 const static char pubkey[] = "demo";
 const static char subkey[] = "demo";

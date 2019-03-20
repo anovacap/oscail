@@ -32,6 +32,7 @@
 9.  Wood, nail, screws, paint
 10. Aruino Create https://www.arduino.cc/en/main/software
 11. PubNub Arduino SDK https://www.pubnub.com/docs/arduino/pubnub-arduino-sdk
+12. PubNub Rest Api https://www.pubnub.com/docs/pubnub-rest-api-documentation
 ## Instructions
 1.  Go to  http://appinventor.mit.edu/explore/ - You will need a QR reader from Google Play Store.
 2.  Select "Create apps!" in upper left corner. Sign up or login.
@@ -41,9 +42,13 @@
 6.  On phone - Open MIT AI2 Companion app - Touch "scan QR code" - point phone to QR on browser.
 7.  "Allow Install" as screens appear on phone - open app.
 ## Software
+<img src="https://github.com/anovacap/oscail/blob/master/Arduino.png" width="75" height="75"> | <img src="https://github.com/anovacap/oscail/blob/master/Mit_App.png" width="75" height="75"> | <img src="https://github.com/anovacap/oscail/blob/master/pubnub-share.png" width="75" height="75">
 1.  Arduino 1.8.9
-2.  Mit App - Built March 9 2019 Version nb175b
-
+2.  Mit App Inventor - Built March 9 2019 Version nb175b
+3.  PubNub Arduino SDK
+4.  PubNub Rest Api
+## Future Goals
+1. Create an Expo deployed React Native App for Andriod and I
 ## Directories
 ---
 Directory Name | Files & Description

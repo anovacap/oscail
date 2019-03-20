@@ -56,7 +56,7 @@ Directory Name | Files & Description
 App_inventor | OSCAIL_app.aia - file to import to Mit App Inventor | Oscail.png - app icon
 arduino | arduino_code.ino - code for UNO | wifi_code.ino - code for ESP8266
 images | All images for README.md
-## Author
+## Authors
 ---
-Damon Nyhan - EM. damon.nyhan@gmail.com Follow  D9@anovacap
-Erwin Gove - EM. erwinhgove@gmail.com - Follow  @ErwinEhg50
+Damon Nyhan     EM. damon.nyhan@gmail.com       Follow  D9@anovacap
+Erwin Gove      EM. erwinhgove@gmail.com        Follow  @ErwinEhg50

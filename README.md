@@ -12,7 +12,7 @@
 
 ---
 * A BluetoothLE/Wifi kit that upgrades doors to be opened with the app.
-* Ability doors (Handicaped doors) are the intended doors to be upgraded with the kit.
+* Ability doors (Handicapped doors) are the intended doors to be upgraded with the kit.
 --- 
 ## Requirements For APP
 1.  App inventor account - Goto http://appinventor.mit.edu/explore/ to create.
@@ -30,7 +30,7 @@
 7.  1 led.
 8.  Male to male jumper cables
 9.  Wood, nail, screws, paint
-10. Aruino Create https://www.arduino.cc/en/main/software
+10. Arduino Create https://www.arduino.cc/en/main/software
 11. PubNub Arduino SDK https://www.pubnub.com/docs/arduino/pubnub-arduino-sdk
 12. PubNub Rest Api https://www.pubnub.com/docs/pubnub-rest-api-documentation
 ## Instructions
@@ -48,7 +48,11 @@
 3.  PubNub Arduino SDK
 4.  PubNub Rest Api
 ## Future Goals
-1. Create an Expo deployed React Native App for Andriod and I
+1. Create an Expo deployed React Native App for Andriod and IOS.
+2. Improve the connection experience.
+3. Include location map in App.
+4. Add more BluetoothLE antennas.
+5. Publish hardware updates through PubNub Api
 ## Directories
 ---
 Directory Name | Files & Description

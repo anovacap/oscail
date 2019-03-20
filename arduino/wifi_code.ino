@@ -30,7 +30,8 @@ void setup() {
   Serial.println("\n");
   PubNub.begin(pubkey, subkey);
   PubNub.set_uuid(uuid);
-//  PubNub.set_auth(auth);
+  WiFi.begin(ssid, pass);
+  //  PubNub.set_auth(auth);
   Serial.print("Connecting to ");
   Serial.print(ssid); Serial.println(" ...");
   Serial.println('\n');

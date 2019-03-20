@@ -6,8 +6,8 @@
 const static char ssid[]     = "drumphsnutz";         // The SSID (name) of the Wi-Fi network you want to connect to
 const static char pass[] = "tinyearth720";     // The password of the Wi-Fi network
 int status = WL_IDLE_STATUS;
-const static char pubkey[] = "pub-c-4392e57b-f7dc-4e1c-a87c-e3cd4f245341";
-const static char subkey[] = "sub-c-8575a256-2cd1-11e9-828a-52de7eb65672";
+const static char pubkey[] = "demo";
+const static char subkey[] = "demo";
 const static char channel[] = "Oscail";
 const static char uuid[] = "ArduinoWF";
 //const static char auth[] = "1234"

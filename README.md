@@ -6,7 +6,7 @@
 * Final Project for Holberton School.
 * Create an Android mobile application that allows the user to connect to a door and open it by  pushing a button on the app.
 ---
-<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171913.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171942.jpg"  width="250" height="250"> |<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171951.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171954.jpg"  width="250" height="250">
+<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171913.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171942.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171951.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171954.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122857.jpg" width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_193205.jpg" width="250" height="250">
 * Create a kit that updates doors to open with the app.
 * Ability doors (Handicaped doors) are the intended doors to be upgraded with the kit.
 * A wifi component will allow access to door status on line

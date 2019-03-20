@@ -58,6 +58,6 @@ arduino | arduino_code.ino - code for UNO | wifi_code.ino - code for ESP8266
 images | All images for README.md
 ## Authors
 ---
-Damon Nyhan     EM. damon.nyhan@gmail.com       Follow  D9@anovacap
+Damon Nyhan         EM. damon.nyhan@gmail.com           Follow  D9@anovacap
 
-Erwin Gove      EM. erwinhgove@gmail.com        Follow  @ErwinEhg50
+Erwin Gove          EM. erwinhgove@gmail.com            Follow  @ErwinEhg50

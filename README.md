@@ -47,6 +47,8 @@
 2.  Mit App Inventor - Built March 9 2019 Version nb175b.
 3.  PubNub Arduino SDK.
 4.  PubNub Rest Api.
+5.  PubNub Console.
+6.  Trello - https://trello.com/ - For workflow management.
 ## Future Goals
 1.  Create an Expo deployed React Native App for Andriod and IOS.
 2.  Improve the connection experience.

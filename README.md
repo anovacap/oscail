@@ -1,5 +1,5 @@
 # Oscail
-<img src="https://github.com/anovacap/oscail/blob/master/Oscal.png" width="200" height="200"> | <img src="https://github.com/anovacap/oscail/blob/master/Screen%20Shot%202019-03-19%20at%208.17.20%20PM.png" width=100 height=200>
+<img src="https://github.com/anovacap/oscail/blob/master/Oscal.png" width="200" height="200"> | <img src="https://github.com/anovacap/oscail/blob/master/Screen%20Shot%202019-03-19%20at%208.17.20%20PM.png" width=150 height=200>
 
 ---
 ## Description

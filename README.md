@@ -24,12 +24,12 @@
 1.  ESP8266 Module ESP-12E NodeMcu LUA WiFi Internet New Version Development Board.
 2.  UNO R3 Board ATmega328P ATMEGA16U2.
 3.  28BYJ-48 ULN2003 5V Stepper Motor + ULN2003 Driver Board.
-4.  HC 05 Bluetooth Module.
+4.  2 HC-05 Bluetooth Module.
 5.  Breadboard.
 6.  Resistors = 1 330ohm, 1 1kohm, 1 2.2kohm.
 7.  1 led.
-8.  Male to male jumper cables.
-9.  Wood, nail, screws, paint.
+8.  Male to male and male to female jumper cables.
+9.  Wood, nail, screws, glue, paint.
 10. Arduino Create https://www.arduino.cc/en/main/software
 11. PubNub Arduino SDK https://www.pubnub.com/docs/arduino/pubnub-arduino-sdk
 12. PubNub Rest Api https://www.pubnub.com/docs/pubnub-rest-api-documentation
@@ -48,12 +48,13 @@
 3.  PubNub Arduino SDK.
 4.  PubNub Rest Api.
 ## Future Goals
-1. Create an Expo deployed React Native App for Andriod and IOS.
-2. Improve the connection experience.
-3. Include location map in App.
-4. Add more BluetoothLE antennas.
-5. Publish hardware updates through PubNub Api.
-6. Attenuate the BluetoothLE range to 8-10 feet.
+1.  Create an Expo deployed React Native App for Andriod and IOS.
+2.  Improve the connection experience.
+3.  Include location map in App.
+4.  Add more BluetoothLE antennas.
+5.  Publish hardware updates through PubNub Api.
+6.  Attenuate the BluetoothLE range to 8-10 feet.
+7.  Explore alternative connectivity
 ## Directories
 ---
 Directory Name | Files & Description

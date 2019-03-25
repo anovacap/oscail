@@ -3,11 +3,11 @@
 #include <PubNub.h>
 #include <SPI.h>
 
-const static char ssid[]     = "drumphsnutz";         // The SSID (name) of the Wi-Fi network you want to connect to
-const static char pass[] = "tinyearth720";     // The password of the Wi-Fi network
+const static char ssid[]     = "XXXX";         // The SSID (name) of the Wi-Fi network you want to connect to
+const static char pass[] = "XXXXXXX";     // The password of the Wi-Fi network
 int status = WL_IDLE_STATUS;
-const static char pubkey[] = "pub-c-4392e57b-f7dc-4e1c-a87c-e3cd4f245341"; // Add your personal PN pubkey
-const static char subkey[] = "sub-c-8575a256-2cd1-11e9-828a-52de7eb65672"; // Add your personal PN subkey
+const static char pubkey[] = "DEMO"; // Add your personal PN pubkey
+const static char subkey[] = "DEMO"; // Add your personal PN subkey
 const static char channel[] = "Oscail"; // PN channel
 const static char uuid[] = "ArduinoWF"; //PN Wifi name on channel
 
@@ -18,9 +18,9 @@ const byte BTtest =D6;
 const byte openStatus = D4; 
 int errorLED = D1; // Out to LED light on Breadboard
 
-int error_flag = 0;
-int hello_flag = 0;
-int msg_flag = 0;
+int welcome_flag = 0; // 0 if client instace success. 1 after succeeds
+int error_flag = 0; // 1 if error. 0 if no error
+int msg_flag = 0; // 0 to proceed with message. 1 to stop (error part of code)
 
 void setup() {
   Serial.begin(115200);         // Start the Serial communication to send messages serial monitor
@@ -48,7 +48,7 @@ void setup() {
 void loop() {
 
   // Welcome message published to APP 
-  if (hello_flag == 0) {
+  if (welcome_flag == 0) { // Welcome message displayed when client instantiated
    Serial.println("publishing a message"); // Out to serial monitor
    auto client = PubNub.publish(channel, "\{\"text\":\"Welcome to Oscail!\"\}"); // Out to APP
    if (!client) {
@@ -72,6 +72,7 @@ void loop() {
      delay(1000);
      return;
    }
+  // Subscribe message read to serial monitor (not used yet)
    while (pclient->wait_for_data()) {
      char c = pclient->read();
      Serial.print(c);
@@ -79,11 +80,11 @@ void loop() {
    pclient->stop();
    Serial.println();
  }
- hello_flag = 1;
+ welcome_flag = 1; // Stop welcome message client instance
 
  delay(3000);
 
-// Sends Error to APP
+// Publish Error to PubNub if Aruduino UNO is down
  if (error_flag == 1) {
   if (msg_flag == 0) {
    Serial.println("publishing a message");
@@ -93,6 +94,7 @@ void loop() {
       delay(1000);
       return;
     }
+  // Read client message out to serial monitor
     while (client->connected()) {
       while (client->connected() && !client->available());
       char c = client->read();
@@ -119,7 +121,7 @@ void loop() {
   }
  }
  else {
-  if (msg_flag == 1) {
+  if (msg_flag == 1) { // Publish Opperational! when UNO is good 
    Serial.println("publishing a message");
     auto client = PubNub.publish(channel, "\{\"text\":\"Opperational!\"\}");
      if (!client) {
@@ -175,7 +177,7 @@ void loop() {
     }
   }
  
-
+// Tests for HC05s not used
   if ( digitalRead(BT2pin) == HIGH){ // Tests whether hc5 is connected
    if (digitalRead(BT2test) == LOW) {
     digitalWrite(errorLED, HIGH);

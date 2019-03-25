@@ -3,11 +3,11 @@
 #include <PubNub.h>
 #include <SPI.h>
 
-const static char ssid[]     = "XXXX";         // The SSID (name) of the Wi-Fi network you want to connect to
-const static char pass[] = "XXXXX";     // The password of the Wi-Fi network
+const static char ssid[]     = "drumphsnutz";         // The SSID (name) of the Wi-Fi network you want to connect to
+const static char pass[] = "tinyearth720";     // The password of the Wi-Fi network
 int status = WL_IDLE_STATUS;
-const static char pubkey[] = "demo";  // Add your personal PN pubkey
-const static char subkey[] = "demo"; // Add your personal PN subkey
+const static char pubkey[] = "pub-c-4392e57b-f7dc-4e1c-a87c-e3cd4f245341"; // Add your personal PN pubkey
+const static char subkey[] = "sub-c-8575a256-2cd1-11e9-828a-52de7eb65672"; // Add your personal PN subkey
 const static char channel[] = "Oscail"; // PN channel
 const static char uuid[] = "ArduinoWF"; //PN Wifi name on channel
 
@@ -56,10 +56,11 @@ void loop() {
      delay(1000);
      return;
    }
+   // client message published to serial monitor
    while (client->connected()) {
      while (client->connected() && !client->available());
-     char c = client->read();
-     Serial.println(c);
+      char c = client->read();
+      Serial.println(c);
    }
    client->stop();
    Serial.println();
@@ -100,7 +101,7 @@ void loop() {
     client->stop();
     Serial.println();
     // Subscribe for future use
-    Serial.println("waiting for a messeage (subscribe)");
+    Serial.println("waiting for a message (subscribe)");
     PubSubClient *pclient = PubNub.subscribe(channel);
     if (!pclient) {
       Serial.println("subscription error");
@@ -133,7 +134,7 @@ void loop() {
     }
     client->stop();
     Serial.println(); 
-    // Setup for future subscribed messages handeling
+    // Setup for future subscribed messages handling
     Serial.println("waiting for a messeage (subscribe)");
     PubSubClient *pclient = PubNub.subscribe(channel);
     if (!pclient) {

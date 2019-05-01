@@ -84,7 +84,7 @@ void loop() {
 
     delay(3000);
 
-// Publish Error to PubNub if Aruduino UNO is down
+    // Publish Error to PubNub if Aruduino UNO is down
     if (error_flag == 1) {
         if (msg_flag == 0) {
             Serial.println("publishing a message");

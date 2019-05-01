@@ -71,104 +71,101 @@ void loop() {
     if (rec == 'a') {
         digitalWrite(openStatus, LOW);
         b = 0;
-begin_open:
-    rec = 0;
-    for(i = b; i < 600; i++) { //OPEN loop
-        OneStep(true);
-        delay(2);
-  }
-dela: // the delay in door loop befor close after open
-    rec = 0;
-    delay(3000);
-    // Dela postion listen logic
-    if(BTserial.available() > 0) { // checks if connection to bluetooth
-        rec = BTserial.read(); // reads data from bluetooth
-    }
-    if(rec == 'a') {
-        goto dela;
-    }
+        begin_open:
+        rec = 0;
+        for(i = b; i < 600; i++) { //OPEN loop
+            OneStep(true);
+            delay(2);
+        }
+        dela: // the delay in door loop befor close after open
+        rec = 0;
+        delay(3000);
+        // Dela postion listen logic
+        if(BTserial.available() > 0) { // checks if connection to bluetooth
+            rec = BTserial.read(); // reads data from bluetooth
+        }
+        if(rec == 'a') {
+            goto dela;
+        }
     
-    rec = 0;
+        rec = 0;
     
-    for(a = 600; a > 0; a--){ //CLOSE loop
+        for(a = 600; a > 0; a--){ //CLOSE loop
         // Closing postion listen loop
-
-    OneStep(false);
-    delay(10);
-    if(BTserial.available() > 0) { // checks if connection to bluetooth
-        rec = BTserial.read(); // reads data from bluetooth
-    }
-    if(rec == 'a') {
-        b = a;
-        goto begin_open;
-    }
+            OneStep(false);
+            delay(10);
+            if(BTserial.available() > 0) { // checks if connection to bluetooth
+            rec = BTserial.read(); // reads data from bluetooth
+            }
+            if(rec == 'a') {
+            b = a;
+            goto begin_open;
+            }
     
+        }
+        digitalWrite(openStatus, HIGH);
+        rec = 0;
     }
-    digitalWrite(openStatus, HIGH);
-    rec = 0;
-    }
-
-
 }
 
 // Below code controls the stepper motor
-void OneStep(bool dir) {
+void OneStep(bool dir) { //Declares rotation direction
     if(dir) {
-switch(step_number) {
-    case 0:
-    digitalWrite(STEPPER_PIN_1, HIGH);
-    digitalWrite(STEPPER_PIN_2, LOW);
-    digitalWrite(STEPPER_PIN_3, LOW);
-    digitalWrite(STEPPER_PIN_4, LOW);
-    break;
-    case 1:
-    digitalWrite(STEPPER_PIN_1, LOW);
-    digitalWrite(STEPPER_PIN_2, HIGH);
-    digitalWrite(STEPPER_PIN_3, LOW);
-    digitalWrite(STEPPER_PIN_4, LOW);
-    break;
-    case 2:
-    digitalWrite(STEPPER_PIN_1, LOW);
-    digitalWrite(STEPPER_PIN_2, LOW);
-    digitalWrite(STEPPER_PIN_3, HIGH);
-    digitalWrite(STEPPER_PIN_4, LOW);
-    break;
-    case 3:
-    digitalWrite(STEPPER_PIN_1, LOW);
-    digitalWrite(STEPPER_PIN_2, LOW);
-    digitalWrite(STEPPER_PIN_3, LOW);
-    digitalWrite(STEPPER_PIN_4, HIGH);
-    break;
-    }
+        switch(step_number) {
+            case 0:
+                digitalWrite(STEPPER_PIN_1, HIGH);
+                digitalWrite(STEPPER_PIN_2, LOW);
+                digitalWrite(STEPPER_PIN_3, LOW);
+                digitalWrite(STEPPER_PIN_4, LOW);
+            break;
+            case 1:
+                digitalWrite(STEPPER_PIN_1, LOW);
+                digitalWrite(STEPPER_PIN_2, HIGH);
+                digitalWrite(STEPPER_PIN_3, LOW);
+                digitalWrite(STEPPER_PIN_4, LOW);
+            break;
+            case 2:
+                digitalWrite(STEPPER_PIN_1, LOW);
+                digitalWrite(STEPPER_PIN_2, LOW);
+                digitalWrite(STEPPER_PIN_3, HIGH);
+                digitalWrite(STEPPER_PIN_4, LOW);
+            break;
+            case 3:
+                digitalWrite(STEPPER_PIN_1, LOW);
+                digitalWrite(STEPPER_PIN_2, LOW);
+                digitalWrite(STEPPER_PIN_3, LOW);
+                digitalWrite(STEPPER_PIN_4, HIGH);
+            break;
+        }
     } else {
         switch(step_number){
-    case 0:
-    digitalWrite(STEPPER_PIN_1, LOW);
-    digitalWrite(STEPPER_PIN_2, LOW);
-    digitalWrite(STEPPER_PIN_3, LOW);
-    digitalWrite(STEPPER_PIN_4, HIGH);
-    break;
-    case 1:
-    digitalWrite(STEPPER_PIN_1, LOW);
-    digitalWrite(STEPPER_PIN_2, LOW);
-    digitalWrite(STEPPER_PIN_3, HIGH);
-    digitalWrite(STEPPER_PIN_4, LOW);
-    break;
-    case 2:
-    digitalWrite(STEPPER_PIN_1, LOW);
-    digitalWrite(STEPPER_PIN_2, HIGH);
-    digitalWrite(STEPPER_PIN_3, LOW);
-    digitalWrite(STEPPER_PIN_4, LOW);
-    break;
-    case 3:
-    digitalWrite(STEPPER_PIN_1, HIGH);
-    digitalWrite(STEPPER_PIN_2, LOW);
-    digitalWrite(STEPPER_PIN_3, LOW);
-    digitalWrite(STEPPER_PIN_4, LOW);
+            case 0:
+                digitalWrite(STEPPER_PIN_1, LOW);
+                digitalWrite(STEPPER_PIN_2, LOW);
+                digitalWrite(STEPPER_PIN_3, LOW);
+                digitalWrite(STEPPER_PIN_4, HIGH);
+            break;
+            case 1:
+                digitalWrite(STEPPER_PIN_1, LOW);
+                digitalWrite(STEPPER_PIN_2, LOW);
+                digitalWrite(STEPPER_PIN_3, HIGH);
+                digitalWrite(STEPPER_PIN_4, LOW);
+            break;
+            case 2:
+                digitalWrite(STEPPER_PIN_1, LOW);
+                digitalWrite(STEPPER_PIN_2, HIGH);
+                digitalWrite(STEPPER_PIN_3, LOW);
+                digitalWrite(STEPPER_PIN_4, LOW);
+            break;
+            case 3:
+                digitalWrite(STEPPER_PIN_1, HIGH);
+                digitalWrite(STEPPER_PIN_2, LOW);
+                digitalWrite(STEPPER_PIN_3, LOW);
+                digitalWrite(STEPPER_PIN_4, LOW);
+        }
     }
-}
-step_number++;
+    step_number++;
     if(step_number > 3) {
         step_number = 0;
     }
-}
+}                   

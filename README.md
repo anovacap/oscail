@@ -1,5 +1,5 @@
 # Oscail
-<img src="https://github.com/anovacap/oscail/blob/master/Oscal.png" width="200" height="200"> | <img src="https://github.com/anovacap/oscail/blob/master/Screen%20Shot%202019-03-19%20at%208.17.20%20PM.png" width=130 height=200>
+<img src="https://github.com/anovacap/oscail/blob/master/images/Oscal.png" width="200" height="200"> | <img src="https://github.com/anovacap/oscail/blob/master/image/Screen%20Shot%202019-03-19%20at%208.17.20%20PM.png" width=130 height=200>
 
 ---
 ## Description
@@ -8,7 +8,7 @@
 * Final Project for Holberton School.
 * Oscail is an Android mobile application that allows the user to connect to a door and open it by  pushing a button on the App. The PubNub Api publishes the status of the Arduino Uno back to the subscribing Oscail App.
 ---
-<img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190319_171913.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190319_171942.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171951.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171954.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122857.jpg" width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_193205.jpg" width="250" height="250">
+<img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190319_171913.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190319_171942.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190319_171951.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190319_171954.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190316_122857.jpg" width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190319_193205.jpg" width="250" height="250">
 
 ---
 * A BluetoothLE/Wifi kit that upgrades doors to be opened with the app.
@@ -42,7 +42,7 @@
 6.  On phone - Open MIT AI2 Companion app - Touch "scan QR code" - point phone to QR on browser.
 7.  "Allow Install" as screens appear on phone - open app.
 ## Software
-<img src="https://github.com/anovacap/oscail/blob/master/Arduino.png" width="75" height="75"> | <img src="https://github.com/anovacap/oscail/blob/master/Mit_App.png" width="75" height="75"> | <img src="https://github.com/anovacap/oscail/blob/master/pubnub-share.png" width="75" height="75">
+<img src="https://github.com/anovacap/oscail/blob/master/images/Arduino.png" width="75" height="75"> | <img src="https://github.com/anovacap/oscail/blob/master/images/Mit_App.png" width="75" height="75"> | <img src="https://github.com/anovacap/oscail/blob/master/images/pubnub-share.png" width="75" height="75">
 1.  Arduino 1.8.9.
 2.  Mit App Inventor - Built March 9 2019 Version nb175b.
 3.  PubNub Arduino SDK.

@@ -46,28 +46,24 @@ void loop() {
         rec = BTserial.read(); // reads data from bluetooth
         Serial.print((char)BTserial.read()); //send it to the PC
     }
-
     if (Serial.available()) {
         delay(10);
         fromPC = (char)Serial.read();
         BTserial.print(fromPC);
         Serial.print(fromPC);
     }
-
     if ( digitalRead(BTpin)==HIGH){ // Tests whether hc05 is connected
         digitalWrite(toWifi, HIGH);
     }
     else {
         digitalWrite(toWifi, LOW);
     }
-
     if ( digitalRead(BT2pin)==HIGH){ // Tests whether hc05_2 is connected
         digitalWrite(toWifi2, HIGH);
     }
     else {
         digitalWrite(toWifi2, LOW);
     }
-
     if (rec == 'a') {
         digitalWrite(openStatus, LOW);
         b = 0;
@@ -86,28 +82,24 @@ void loop() {
         }
         if(rec == 'a') {
             goto dela;
-        }
-    
-        rec = 0;
-    
+        }    
+        rec = 0;    
         for(a = 600; a > 0; a--){ //CLOSE loop
-        // Closing postion listen loop
+            // Closing postion listen loop
             OneStep(false);
             delay(10);
             if(BTserial.available() > 0) { // checks if connection to bluetooth
-            rec = BTserial.read(); // reads data from bluetooth
+                rec = BTserial.read(); // reads data from bluetooth
             }
             if(rec == 'a') {
-            b = a;
-            goto begin_open;
-            }
-    
+                b = a;
+                goto begin_open;
+            }    
         }
         digitalWrite(openStatus, HIGH);
         rec = 0;
     }
 }
-
 // Below code controls the stepper motor
 void OneStep(bool dir) { //Declares rotation direction
     if(dir) {

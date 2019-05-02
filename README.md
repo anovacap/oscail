@@ -8,7 +8,7 @@
 * Final Project for Holberton School.
 * Oscail is an Android mobile application that allows the user to connect to a door and open it by  pushing a button on the App. The PubNub Api publishes the status of the Arduino Uno back to the subscribing Oscail App.
 ---
-<img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171913.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171942.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171951.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171954.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122857.jpg" width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_193205.jpg" width="250" height="250">
+<img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190319_171913.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/images/IMG_20190319_171942.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171951.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_171954.jpg"  width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190316_122857.jpg" width="250" height="250"> | <img src="https://github.com/anovacap/oscail/blob/master/IMG_20190319_193205.jpg" width="250" height="250">
 
 ---
 * A BluetoothLE/Wifi kit that upgrades doors to be opened with the app.

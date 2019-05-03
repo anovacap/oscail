@@ -21,20 +21,18 @@ boolean BTconnected = false;
 boolean BT6connected = false;
 
 void setup() {
-//Serial.begin(9600);
-pinMode(STEPPER_PIN_1, OUTPUT); // Initialize pin9 UNO - stepper motor IN4
-pinMode(STEPPER_PIN_2, OUTPUT); // Initialize pin10 UNO - stepper motor IN3
-pinMode(STEPPER_PIN_3, OUTPUT); // Initialize pin11 on UNO - stepper motor IN2
-pinMode(STEPPER_PIN_4, OUTPUT); // Initialize pin12 on UNO - stepper motor IN1
-pinMode(BTpin, INPUT); // Initialize pin7 on UNO
-pinMode(BT2pin, INPUT); // Initialize pin5 on UNO
-pinMode(toWifi, OUTPUT);  // Initialize pin8 on UNO
-pinMode(toWifi2, OUTPUT); // Initialize pin13 on UNO
-pinMode(openStatus, OUTPUT); // Initialize pin6 on UNO output to Wifi 
-BTserial.begin(9600); // Default communication rate of bluetooth connector
-Serial.begin(115200); // Hardware serial for USB
-Serial.println("Hello"); // "Hello" output through serial port 
-//BT6serial.begin(9600);
+    pinMode(STEPPER_PIN_1, OUTPUT); // Initialize pin9 UNO - stepper motor IN4
+    pinMode(STEPPER_PIN_2, OUTPUT); // Initialize pin10 UNO - stepper motor IN3
+    pinMode(STEPPER_PIN_3, OUTPUT); // Initialize pin11 on UNO - stepper motor IN2
+    pinMode(STEPPER_PIN_4, OUTPUT); // Initialize pin12 on UNO - stepper motor IN1
+    pinMode(BTpin, INPUT); // Initialize pin7 on UNO
+    pinMode(BT2pin, INPUT); // Initialize pin5 on UNO
+    pinMode(toWifi, OUTPUT);  // Initialize pin8 on UNO
+    pinMode(toWifi2, OUTPUT); // Initialize pin13 on UNO
+    pinMode(openStatus, OUTPUT); // Initialize pin6 on UNO output to Wifi 
+    BTserial.begin(9600); // Default communication rate of bluetooth connector
+    Serial.begin(115200); // Hardware serial for USB
+    Serial.println("Hello"); // "Hello" output through serial port 
 }
 
 

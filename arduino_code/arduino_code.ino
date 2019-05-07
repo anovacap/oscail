@@ -11,14 +11,14 @@ int step_number = 0; //
 int rec = 0;
 const byte BTpin = 7; // From State pin HC05 to UNO pin7
 const byte BT2pin = 5; // From State pin HC05_2 to UNO pin5
-int toWifi = 8; // 
+int toWifi = 8;
 int toWifi2 = 13;
 int a = 0;
 int i = 0;
 int b = 0;
-int openStatus = 6; // Open state of 
-boolean BTconnected = false;
-boolean BT6connected = false;
+int openStatus = 6; // Open state
+bool BTconnected = false;
+bool BT6connected = false;
 
 void setup() {
     pinMode(STEPPER_PIN_1, OUTPUT); // Initialize pin9 UNO - stepper motor IN4

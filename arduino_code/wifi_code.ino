@@ -1,32 +1,28 @@
-#include <ESP8266WiFi.h>// Include the Wi-Fi library
+#include <ESP8266WiFi.h>                        // Include the Wi-Fi library
 #define PubNub_BASE_CLIENT WiFiClient
 #include <PubNub.h>
 #include <SPI.h>
 
-const static char ssid[]     = "XXXX";         // The SSID (name) of the Wi-Fi network you want to connect to
-const static char pass[] = "XXXXXXX";     // The password of the Wi-Fi network
-int status = WL_IDLE_STATUS;
-const static char pubkey[] = "DEMO"; // Add your personal PN pubkey
-const static char subkey[] = "DEMO"; // Add your personal PN subkey
-const static char channel[] = "Oscail"; // PN channel
-const static char uuid[] = "ArduinoWF"; //PN Wifi name on channel
-const byte BT2pin = D3; //
-const byte BT2test = D7;
-const byte BTpin = D2;
-const byte BTtest =D6;
-const byte openStatus = D4; 
-int errorLED = D1; // Out to LED light on Breadboard
-int welcome_flag = 0; // 0 if client instace success. 1 after succeeds
-int error_flag = 0; // 1 if error. 0 if no error
-int msg_flag = 0; // 0 to proceed with message. 1 to stop (error part of code)
+const byte BT2pin = D3;                         // Bluetooth_2 status from arduino
+const byte BT2test = D7;                        // Bluetooth_2 status from actual bluetooth module
+const byte BTpin = D2;                          // Bluetooth status from arduino
+const byte BTtest =D6;                          // Bluetooth status from actual bluetooth module 
+const byte openStatus = D4;                     // Tells when door is opening 
+int errorLED = D1;                              // Out to LED light on Breadboard
+int welcome_flag = 0;                           // 0 if client instace success. 1 after succeeds
 
 void setup() {
-    Serial.begin(115200);         // Start the Serial communication to send messages serial monitor
+    const static char ssid[]     = "XXXX";      // The SSID (name) of the Wi-Fi network you want to connect to
+    const static char pass[] = "XXXXXXX";       // The password of the Wi-Fi network
+    const static char uuid[] = "ArduinoWF";     //PN Wifi name on channel
+    const static char pubkey[] = "DEMO";        // Add your personal PN pubkey
+    const static char subkey[] = "DEMO";        // Add your personal PN subkey
+    Serial.begin(115200);                       // Start the Serial communication to send messages serial monitor
     delay(10);
-    Serial.println("\n");         // Message to serial monitor
-    PubNub.begin(pubkey, subkey); // Instantiate a PubNub instance
-    PubNub.set_uuid(uuid);        // Create the UUID for the device
-    WiFi.begin(ssid, pass);       // Connect to Wifi
+    Serial.println("\n");                       // Message to serial monitor
+    PubNub.begin(pubkey, subkey);               // Instantiate a PubNub instance
+    PubNub.set_uuid(uuid);                      // Create the UUID for the device
+    WiFi.begin(ssid, pass);                     // Connect to Wifi
     Serial.print("Connecting to ");             // Message to serial monitor
     Serial.print(ssid); Serial.println(" ..."); // Message to serial monitor
     Serial.println('\n');                       // Message to serial monitor
@@ -34,17 +30,23 @@ void setup() {
     Serial.print("IP address:\t");              // Message to serial monitor
     Serial.println(WiFi.localIP());             // Send the IP address of the ESP8266 to the computer
     // pin modes
-    pinMode(BTtest, INPUT); // Initialize pin6 as input
-    pinMode(BT2test, INPUT); // Initialize pin7 as input
-    pinMode(BTpin, INPUT);   // Initialize pin2 as input
-    pinMode(BT2pin, INPUT);  // Initialize pin3 as input
-    pinMode(openStatus, INPUT); // Initialize pin4 as input
-    pinMode(errorLED, OUTPUT);  // Initialize pin1 as input
+    pinMode(BTtest, INPUT);                     // Initialize pin6 as input
+    pinMode(BT2test, INPUT);                    // Initialize pin7 as input
+    pinMode(BTpin, INPUT);                      // Initialize pin2 as input
+    pinMode(BT2pin, INPUT);                     // Initialize pin3 as input
+    pinMode(openStatus, INPUT);                 // Initialize pin4 as input
+    pinMode(errorLED, OUTPUT);                  // Initialize pin1 as input
 }
 
 void loop() {
-  // Welcome message published to APP 
-    if (welcome_flag == 0) { // Welcome message displayed when client instantiated
+                                                // Welcome message published to APP 
+    int error_flag;
+    int msg_flag;
+    const static char channel[] = "Oscail";     // PN channel
+    if (welcome_flag == 0) {                    // Welcome message displayed when client instantiated
+        int status = WL_IDLE_STATUS;
+        error_flag = 0;                         // 1 if error. 0 if no error
+        msg_flag = 0;                           // 0 to proceed with message. 1 to stop (error part of code)
         Serial.println("publishing a message"); // Out to serial monitor
         auto client = PubNub.publish(channel, "\{\"text\":\"Welcome to Oscail!\"\}"); // Out to APP
         if (!client) {
@@ -52,7 +54,7 @@ void loop() {
             delay(1000);
             return;
         }
-        // client message published to serial monitor
+                                                // client message published to serial monitor
         while (client->connected()) {
             while (client->connected() && !client->available());{
                 char c = client->read();
@@ -61,7 +63,7 @@ void loop() {
         }
         client->stop();
         Serial.println();
-        // Subscribe setup for future messages - updates?
+                                                // Subscribe setup for future messages - updates?
         Serial.println("waiting for a messeage (subscribe)");
         PubSubClient *pclient = PubNub.subscribe(channel);
         if (!pclient) {
@@ -69,7 +71,7 @@ void loop() {
             delay(1000);
             return;
         }
-        // Subscribe message read to serial monitor (not used yet)
+                                               // Subscribe message read to serial monitor (not used yet)
         while (pclient->wait_for_data()) {
             char c = pclient->read();
             Serial.print(c);
@@ -77,9 +79,9 @@ void loop() {
         pclient->stop();
         Serial.println();
     }
-    welcome_flag = 1; // Stop welcome message client instance
+    welcome_flag = 1;    // Stop welcome message client instance
     delay(3000);
-    // Publish Error to PubNub if Aruduino UNO is down
+                                              // Publish Error to PubNub if Aruduino UNO is down
     if (error_flag == 1) {
         if (msg_flag == 0) {
             Serial.println("publishing a message");
@@ -89,7 +91,7 @@ void loop() {
                 delay(1000);
                 return;
             }
-            // Read client message out to serial monitor
+                                             // Read client message out to serial monitor
             while (client->connected()) {
                 while (client->connected() && !client->available());{
                     char c = client->read();
@@ -98,7 +100,7 @@ void loop() {
             }
             client->stop();
             Serial.println();
-            // Subscribe for future use
+                                             // Subscribe for future use
             Serial.println("waiting for a message (subscribe)");
             PubSubClient *pclient = PubNub.subscribe(channel);
             if (!pclient) {
@@ -117,7 +119,7 @@ void loop() {
         }
     }
     else {
-    if (msg_flag == 1) { // Publish Opperational! when UNO is good 
+    if (msg_flag == 1) {                    // Publish Opperational! when UNO is good 
         Serial.println("publishing a message");
         auto client = PubNub.publish(channel, "\{\"text\":\"Opperational!\"\}");
         if (!client) {
@@ -133,7 +135,7 @@ void loop() {
         }
         client->stop();
         Serial.println(); 
-        // Setup for future subscribed messages handling
+                                            // Setup for future subscribed messages handling
         Serial.println("waiting for a messeage (subscribe)");
         PubSubClient *pclient = PubNub.subscribe(channel);
         if (!pclient) {
@@ -150,9 +152,9 @@ void loop() {
         msg_flag = 0;
         }
     }
-    // Looking for error
-    if (digitalRead(openStatus) == HIGH) {  // Checks whether it is open or not
-        if ( digitalRead(BTpin)==HIGH){ // Tests whether HC05 is connected
+                                                 // Looking for error
+    if (digitalRead(openStatus) == HIGH) {       // Checks whether it is open or not
+        if ( digitalRead(BTpin)==HIGH){          // Tests whether HC05 is connected
             if (digitalRead(BTtest) == LOW) {
             digitalWrite(errorLED, HIGH);
             error_flag = 1;
@@ -172,11 +174,11 @@ void loop() {
                 error_flag = 0;
             }
         }
-        // Tests for HC05s not used
-        if ( digitalRead(BT2pin) == HIGH){ // Tests whether hc5 is connected
+                                                 // Tests for HC05s not used
+        if ( digitalRead(BT2pin) == HIGH){       // Tests whether hc5 is connected
             if (digitalRead(BT2test) == LOW) {
                 digitalWrite(errorLED, HIGH);
-                error_flag = 1;
+                error_flag = 1; 
             }   
             else {
                 digitalWrite(errorLED, LOW); 

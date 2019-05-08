@@ -54,7 +54,7 @@ void loop() {
             delay(1000);
             return;
         }
-                                                // client message published to serial monitor
+                                             // client message published to serial monitor
         while (client->connected()) {
             while (client->connected() && !client->available());{
                 char c = client->read();
@@ -63,7 +63,7 @@ void loop() {
         }
         client->stop();
         Serial.println();
-                                                // Subscribe setup for future messages - updates?
+                                             // Subscribe setup for future messages - updates?
         Serial.println("waiting for a messeage (subscribe)");
         PubSubClient *pclient = PubNub.subscribe(channel);
         if (!pclient) {
@@ -71,7 +71,7 @@ void loop() {
             delay(1000);
             return;
         }
-                                               // Subscribe message read to serial monitor (not used yet)
+                                             // Subscribe message read to serial monitor (not used yet)
         while (pclient->wait_for_data()) {
             char c = pclient->read();
             Serial.print(c);
@@ -79,9 +79,9 @@ void loop() {
         pclient->stop();
         Serial.println();
     }
-    welcome_flag = 1;    // Stop welcome message client instance
+    welcome_flag = 1;                        // Stop welcome message client instance
     delay(3000);
-                                              // Publish Error to PubNub if Aruduino UNO is down
+                                             // Publish Error to PubNub if Aruduino UNO is down
     if (error_flag == 1) {
         if (msg_flag == 0) {
             Serial.println("publishing a message");
@@ -119,9 +119,9 @@ void loop() {
         }
     }
     else {
-    if (msg_flag == 1) {                    // Publish Opperational! when UNO is good 
+    if (msg_flag == 1) {                    // Publish Operational! when UNO is good 
         Serial.println("publishing a message");
-        auto client = PubNub.publish(channel, "\{\"text\":\"Opperational!\"\}");
+        auto client = PubNub.publish(channel, "\{\"text\":\"Operational!\"\}");
         if (!client) {
             Serial.println("publishing error");
             delay(1000);
@@ -154,7 +154,7 @@ void loop() {
     }
                                                  // Looking for error
     if (digitalRead(openStatus) == HIGH) {       // Checks whether it is open or not
-        if ( digitalRead(BTpin)==HIGH){          // Tests whether HC05 is connected
+        if ( digitalRead(BTpin)==HIGH){          // Tests whether hc05 is connected
             if (digitalRead(BTtest) == LOW) {
             digitalWrite(errorLED, HIGH);
             error_flag = 1;
@@ -174,8 +174,8 @@ void loop() {
                 error_flag = 0;
             }
         }
-                                                 // Tests for HC05s not used
-        if ( digitalRead(BT2pin) == HIGH){       // Tests whether hc5 is connected
+                                                 // Tests for hc05 not used
+        if ( digitalRead(BT2pin) == HIGH){       // Tests whether hc05 is connected
             if (digitalRead(BT2test) == LOW) {
                 digitalWrite(errorLED, HIGH);
                 error_flag = 1; 

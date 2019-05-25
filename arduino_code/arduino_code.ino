@@ -1,39 +1,23 @@
 #include <SoftwareSerial.h>
 SoftwareSerial BTserial(2, 3);        // Initialize UNO RX2 | TX3 connect to combined TX | RX of HC05s
 
-#define STEPPER_PIN_1 9               // Setup UNO pin9 for stepper motor
-#define STEPPER_PIN_2 10              // Setup UNO pin10 for stepper motor
-#define STEPPER_PIN_3 11              // Setup UNO pin11 for stepper motor
-#define STEPPER_PIN_4 12              // Setup UNO pin12 for stepper motor
+#define STEPPER_PIN_1 9               // Setup UNO pin9 for stepper motor orange
+#define STEPPER_PIN_2 10              // Setup UNO pin10 for stepper motor green
+#define STEPPER_PIN_3 11              // Setup UNO pin11 for stepper motor yellow
+#define STEPPER_PIN_4 12              // Setup UNO pin12 for stepper motor brown
 
-// String fromPC = "";                   // Stores characters sent from APP
 int step_number = 0;                  // Used for opperating the 4 pins
-// int rec = 0;
-const byte BTpin = 7;                 // From State pin HC05 to UNO pin7
-const byte BT2pin = 5;                // From State pin HC05_2 to UNO pin5
-int toWifi = 8;                       // Signal to WiFi Bluetooth 
-int toWifi2 = 13;                     // Signal to WiFi Bluetooth
-// int step_number = 0;                  
-int openStatus = 6;                   // Open state of 
-    
-
-
-// const byte BTpin = 7; // From State pin HC05 to UNO pin7
-// const byte BT2pin = 5; // From State pin HC05_2 to UNO pin5
-// int toWifi = 8;
-// int toWifi2 = 13;
-// int a = 0;
-// int i = 0;
-// int b = 0;
-int openStatus = 6; // Open state
-// bool BTconnected = false;
-// bool BT6connected = false;
+const byte BTpin = 7;                 // From State pin HC05 to UNO pin7 white
+const byte BT2pin = 5;                // From State pin HC05_2 to UNO pin5 white
+int toWifi = 8;                       // Signal to WiFi Bluetooth white
+int toWifi2 = 13;                     // Signal to WiFi Bluetooth white
+int openStatus = 6;                   // Open state of UNO
 
 void setup() {
-    pinMode(STEPPER_PIN_1, OUTPUT);   // Initialize pin9 UNO - stepper motor IN4
-    pinMode(STEPPER_PIN_2, OUTPUT);   // Initialize pin10 UNO - stepper motor IN3
-    pinMode(STEPPER_PIN_3, OUTPUT);   // Initialize pin11 on UNO - stepper motor IN2
-    pinMode(STEPPER_PIN_4, OUTPUT);   // Initialize pin12 on UNO - stepper motor IN1
+    pinMode(STEPPER_PIN_1, OUTPUT);   // Initialize pin9 UNO - stepper motor IN4 orange
+    pinMode(STEPPER_PIN_2, OUTPUT);   // Initialize pin10 UNO - stepper motor IN3 green
+    pinMode(STEPPER_PIN_3, OUTPUT);   // Initialize pin11 on UNO - stepper motor IN2 yellow
+    pinMode(STEPPER_PIN_4, OUTPUT);   // Initialize pin12 on UNO - stepper motor IN1 brown
     pinMode(BTpin, INPUT);            // Initialize pin7 on UNO
     pinMode(BT2pin, INPUT);           // Initialize pin5 on UNO
     pinMode(toWifi, OUTPUT);          // Initialize pin8 on UNO
@@ -53,7 +37,6 @@ void loop() {
     int i = 0;
     int b = 0;
     String fromPC = "";               // Stores characters sent from APP
-    
                                       // look for command in rest mode logic
     digitalWrite(openStatus, HIGH);
     rec = 0;

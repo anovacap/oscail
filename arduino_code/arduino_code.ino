@@ -6,30 +6,28 @@ SoftwareSerial BTserial(2, 3);        // Initialize UNO RX2 | TX3 connect to com
 #define STEPPER_PIN_3 11              // Setup UNO pin11 for stepper motor
 #define STEPPER_PIN_4 12              // Setup UNO pin12 for stepper motor
 
+// String fromPC = "";                   // Stores characters sent from APP
+int step_number = 0;                  // Used for opperating the 4 pins
+// int rec = 0;
 const byte BTpin = 7;                 // From State pin HC05 to UNO pin7
 const byte BT2pin = 5;                // From State pin HC05_2 to UNO pin5
 int toWifi = 8;                       // Signal to WiFi Bluetooth 
 int toWifi2 = 13;                     // Signal to WiFi Bluetooth
-int step_number = 0;                  // Used for opperating the 4 pins
+// int step_number = 0;                  
 int openStatus = 6;                   // Open state of 
     
 
-<<<<<<< HEAD
-String fromPC = ""; // Stores characters sent from APP
-int step_number = 0; // 
-int rec = 0;
-const byte BTpin = 7; // From State pin HC05 to UNO pin7
-const byte BT2pin = 5; // From State pin HC05_2 to UNO pin5
-int toWifi = 8;
-int toWifi2 = 13;
-int a = 0;
-int i = 0;
-int b = 0;
+
+// const byte BTpin = 7; // From State pin HC05 to UNO pin7
+// const byte BT2pin = 5; // From State pin HC05_2 to UNO pin5
+// int toWifi = 8;
+// int toWifi2 = 13;
+// int a = 0;
+// int i = 0;
+// int b = 0;
 int openStatus = 6; // Open state
-bool BTconnected = false;
-bool BT6connected = false;
-=======
->>>>>>> 7569fe44b8d0091ed938740d19e47abb51406b78
+// bool BTconnected = false;
+// bool BT6connected = false;
 
 void setup() {
     pinMode(STEPPER_PIN_1, OUTPUT);   // Initialize pin9 UNO - stepper motor IN4

@@ -30,19 +30,18 @@ void setup() {
 
 
 void loop() {
-    int rec = 0;                      // BT message
-    int a = 0;                        // for loop itt
-    int i = 0;                        // for loop itt
-    int b = 0;                        // place holder for door position
+    char rec = 'x';                   // BT message
+    int a = 0;                        // Open loop iterator
+    int i = 0;                        // Close loop iterator
+    int b = 0;                        // Place holder for door position
     String fromPC = "";               // Stores characters sent from APP
-                                      // look for command in rest mode logic
     digitalWrite(openStatus, HIGH);
     rec = 0;
-    if(BTserial.available() > 0) {    // checks if connection to bluetooth
-        rec = BTserial.read();        // reads data from bluetooth
-        Serial.print((char)BTserial.read()); // send it to the PC
+    if(BTserial.available() > 0) {    // Checks if connection to bluetooth
+        rec = BTserial.read();        // Reads data from bluetooth sets rec to 'a'
+        Serial.print((char)BTserial.read()); // Send it to the PC
     }
-    if (Serial.available()) {
+    if (Serial.available()) {         // Message for AT
         delay(10);
         fromPC = (char)Serial.read();
         BTserial.print(fromPC);
@@ -63,15 +62,15 @@ void loop() {
     if (rec == 'a') {
         digitalWrite(openStatus, LOW);
         b = 0;
-    begin_open:                       // Label for open loop 
-        rec = 0;
+    begin_open:                       // begin_open label
+        rec = 'x';                    // Reset rec
         for(i = b; i < 600; i++) {    // OPEN loop
-            OneStep(true);            // Calls open loop
-            delay(2);
+            OneStep(true);            // Calls stepper loop
+            delay(2);                 // Slows door swing
         }
-    dela:                             // dela label 
+    dela:                             // dela label
         rec = 0;
-        delay(3000);                  // the delay in door loop befor close after open
+        delay(3000);                  // The delay in door loop befor close after open
         // Dela postion listen logic
         if(BTserial.available() > 0) { // checks if connection to bluetooth
             rec = BTserial.read();    // reads data from bluetooth
@@ -79,13 +78,13 @@ void loop() {
         if(rec == 'a') {
             goto dela;
         }    
-        rec = 0;    
+        rec = 'x';                  // Reset rec
         for(a = 600; a > 0; a--){   // CLOSE loop
                                     // Closing postion listen loop
             OneStep(false);
             delay(10);
-            if(BTserial.available() > 0) { // checks if connection to bluetooth
-                rec = BTserial.read(); // reads data from bluetooth
+            if(BTserial.available() > 0) { // Checks if connection to bluetooth
+                rec = BTserial.read(); // Reads data from bluetooth
             }
             if(rec == 'a') {          // If 'a' is received again open again
                 b = a;
@@ -93,12 +92,11 @@ void loop() {
             }    
         }
         digitalWrite(openStatus, HIGH);
-        rec = 0;
+        rec = 'x';                    // Reset rec
     }
-}
-                                   // Below code controls the stepper motor
-void OneStep(bool dir) {           //Declares rotation direction
-    if(dir) {
+}                                   
+void OneStep(bool dir) {              // Below code controls the stepper motor
+    if(dir) {                         //Declares rotation direction
         switch(step_number) {
             case 0:
                 digitalWrite(STEPPER_PIN_1, HIGH);

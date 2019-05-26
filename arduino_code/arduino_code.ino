@@ -42,7 +42,7 @@ void loop() {
     rec = 0;
     if(BTserial.available() > 0) {    // checks if connection to bluetooth
         rec = BTserial.read();        // reads data from bluetooth
-        Serial.print((char)BTserial.read()); // send it to the PC AT
+        Serial.print((char)BTserial.read()); // send it to the PC
     }
     if (Serial.available()) {
         delay(10);

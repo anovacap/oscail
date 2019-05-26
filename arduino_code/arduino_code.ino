@@ -30,12 +30,10 @@ void setup() {
 
 
 void loop() {
-    boolean BTconnected = false;
-    boolean BT6connected = false;
-    int rec = 0;
-    int a = 0;
-    int i = 0;
-    int b = 0;
+    int rec = 0;                      // BT message
+    int a = 0;                        // for loop itt
+    int i = 0;                        // for loop itt
+    int b = 0;                        // place holder for door position
     String fromPC = "";               // Stores characters sent from APP
                                       // look for command in rest mode logic
     digitalWrite(openStatus, HIGH);

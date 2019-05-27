@@ -14,7 +14,7 @@ int welcome_flag = 0;                           // 0 if client instace success. 
 void setup() {
     const static char ssid[]     = "XXXX";      // The SSID (name) of the Wi-Fi network you want to connect to
     const static char pass[] = "XXXXXXX";       // The password of the Wi-Fi network
-    const static char uuid[] = "ArduinoWF";     //PN Wifi name on channel
+    const static char uuid[] = "ArduinoWF";     // PN Wifi name on channel
     const static char pubkey[] = "DEMO";        // Add your personal PN pubkey
     const static char subkey[] = "DEMO";        // Add your personal PN subkey
     Serial.begin(115200);                       // Start the Serial communication to send messages serial monitor
@@ -38,8 +38,7 @@ void setup() {
     pinMode(errorLED, OUTPUT);                  // Initialize pin1 as input
 }
 
-void loop() {
-                                                // Welcome message published to APP 
+void loop() {                                   // Welcome message published to APP                                             
     int error_flag;
     int msg_flag;
     const static char channel[] = "Oscail";     // PN channel
@@ -53,55 +52,49 @@ void loop() {
             Serial.println("publishing error"); // Out to serial monitor
             delay(1000);
             return;
-        }
-                                             // client message published to serial monitor
-        while (client->connected()) {
+        }                                   
+        while (client->connected()) {           // Client message published to serial monitor
             while (client->connected() && !client->available());{
                 char c = client->read();
-                Serial.println(c);
+                Serial.println(c);              // To PC
             }
         }
         client->stop();
-        Serial.println();
-                                             // Subscribe setup for future messages - updates?
-        Serial.println("waiting for a messeage (subscribe)");
-        PubSubClient *pclient = PubNub.subscribe(channel);
+        Serial.println();                                             
+        Serial.println("waiting for a message (subscribe)");
+        PubSubClient *pclient = PubNub.subscribe(channel);// Subscribe setup for future messages - updates?
         if (!pclient) {
             Serial.println("subscription error");
             delay(1000);
             return;
-        }
-                                             // Subscribe message read to serial monitor (not used yet)
-        while (pclient->wait_for_data()) {
+        }          
+        while (pclient->wait_for_data()) {      // Subscribe message read to serial monitor (not used yet)
             char c = pclient->read();
             Serial.print(c);
         }
         pclient->stop();
         Serial.println();
     }
-    welcome_flag = 1;                        // Stop welcome message client instance
-    delay(3000);
-                                             // Publish Error to PubNub if Aruduino UNO is down
-    if (error_flag == 1) {
+    welcome_flag = 1;                           // Stop welcome message client instance
+    delay(3000);                                          
+    if (error_flag == 1) {                      // Publish Error to PubNub if Aruduino UNO is down
         if (msg_flag == 0) {
-            Serial.println("publishing a message");
-            auto client = PubNub.publish(channel, "\{\"text\":\"Critical Error!\"\}");
+            Serial.println("publishing a message");// To PC
+            auto client = PubNub.publish(channel, "\{\"text\":\"Critical Error!\"\}"); // To App
             if (!client) {
-                Serial.println("publishing error");
+                Serial.println("publishing error"); // To PC
                 delay(1000);
                 return;
-            }
-                                             // Read client message out to serial monitor
-            while (client->connected()) {
+            }                        
+            while (client->connected()) {       // Read client message out to serial monitor
                 while (client->connected() && !client->available());{
                     char c = client->read();
                     Serial.println(c);
                 }
             }
             client->stop();
-            Serial.println();
-                                             // Subscribe for future use
-            Serial.println("waiting for a message (subscribe)");
+            Serial.println();                             
+            Serial.println("waiting for a message (subscribe)");// Subscribe for future use
             PubSubClient *pclient = PubNub.subscribe(channel);
             if (!pclient) {
                 Serial.println("subscription error");
@@ -119,11 +112,11 @@ void loop() {
         }
     }
     else {
-    if (msg_flag == 1) {                    // Publish Operational! when UNO is good 
-        Serial.println("publishing a message");
-        auto client = PubNub.publish(channel, "\{\"text\":\"Operational!\"\}");
+    if (msg_flag == 1) {                        // Publish Operational! when UNO is good 
+        Serial.println("publishing a message"); // To PC
+        auto client = PubNub.publish(channel, "\{\"text\":\"Operational!\"\}"); // To App
         if (!client) {
-            Serial.println("publishing error");
+            Serial.println("publishing error"); // To PC
             delay(1000);
             return;
         }
@@ -134,9 +127,8 @@ void loop() {
             }
         }
         client->stop();
-        Serial.println(); 
-                                            // Setup for future subscribed messages handling
-        Serial.println("waiting for a messeage (subscribe)");
+        Serial.println();                  
+        Serial.println("waiting for a messeage (subscribe)");// Setup for future subscribed messages handling
         PubSubClient *pclient = PubNub.subscribe(channel);
         if (!pclient) {
             Serial.println("subscription error");

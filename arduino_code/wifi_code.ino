@@ -41,15 +41,14 @@ void setup() {
 void loop() {                                   // Welcome message published to APP                                             
     int error_flag;
     int msg_flag;
-    const static char channel[] = "Oscail";     // PN channel
+    const static char channel[] = "Oscail";     // PN channel for PN client connect
     if (welcome_flag == 0) {                    // Welcome message displayed when client instantiated
-        int status = WL_IDLE_STATUS;
         error_flag = 0;                         // 1 if error. 0 if no error
         msg_flag = 0;                           // 0 to proceed with message. 1 to stop (error part of code)
         Serial.println("publishing a message"); // Out to serial monitor
         auto client = PubNub.publish(channel, "\{\"text\":\"Welcome to Oscail!\"\}"); // Out to APP
         if (!client) {
-            Serial.println("publishing error"); // Out to serial monitor
+            Serial.println("publishing error"); // Out to serial monitor if can not connect
             delay(1000);
             return;
         }                                   
@@ -72,7 +71,7 @@ void loop() {                                   // Welcome message published to 
             char c = pclient->read();
             Serial.print(c);
         }
-        pclient->stop();
+        pclient->stop();                        // Stop subscribe client 
         Serial.println();
     }
     welcome_flag = 1;                           // Stop welcome message client instance
@@ -86,13 +85,13 @@ void loop() {                                   // Welcome message published to 
                 delay(1000);
                 return;
             }                        
-            while (client->connected()) {       // Read client message out to serial monitor
+            while (client->connected()) {       // Print client message out to serial monitor
                 while (client->connected() && !client->available());{
                     char c = client->read();
                     Serial.println(c);
                 }
             }
-            client->stop();
+            client->stop();                     // Stop client message
             Serial.println();                             
             Serial.println("waiting for a message (subscribe)");// Subscribe for future use
             PubSubClient *pclient = PubNub.subscribe(channel);
@@ -144,30 +143,28 @@ void loop() {                                   // Welcome message published to 
         msg_flag = 0;
         }
     }
-                                                 // Looking for error
-    if (digitalRead(openStatus) == HIGH) {       // Checks whether it is open or not
-        if ( digitalRead(BTpin)==HIGH){          // Tests whether hc05 is connected
-            if (digitalRead(BTtest) == LOW) {
+    if (digitalRead(openStatus) == HIGH) {      // Checks whether it is open or not
+        if ( digitalRead(BTpin)==HIGH){         // Tests whether hc05 is connected
+            if (digitalRead(BTtest) == LOW) {   // Bluetooth offline
             digitalWrite(errorLED, HIGH);
-            error_flag = 1;
+            error_flag = 1;                     // LED goes on
             }
             else {
-                digitalWrite(errorLED, LOW);
+                digitalWrite(errorLED, LOW);    // LED off error
                 error_flag = 0;
             }
         }
         else {
             if (digitalRead(BTtest) == HIGH) {
                 digitalWrite(errorLED, HIGH);
-                error_flag = 1;
+                error_flag = 1;                 // High pins = error
             }
             else {
                 digitalWrite(errorLED, LOW);
                 error_flag = 0;
             }
         }
-                                                 // Tests for hc05 not used
-        if ( digitalRead(BT2pin) == HIGH){       // Tests whether hc05 is connected
+        if ( digitalRead(BT2pin) == HIGH){       // Tests whether hc05 #2 is connected
             if (digitalRead(BT2test) == LOW) {
                 digitalWrite(errorLED, HIGH);
                 error_flag = 1; 
